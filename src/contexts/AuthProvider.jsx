@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import auth from '../firebase/firebase.init';
 import { useState } from 'react';
+
+const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -11,9 +13,20 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
+    // ---------------login with email and password
     const signInUser = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
+    }
+    // ---------------signin with google
+    const signInWithGoogle = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
+    }
+    // -------------Sign Out
+    const signOutUser = () => {
+        setLoading(true);
+        return signOut(auth);
     }
 
     useEffect(() => {
@@ -29,13 +42,15 @@ const AuthProvider = ({ children }) => {
     const authInfo = {
         createUser,
         signInUser,
+        signInWithGoogle,
+        signOutUser,
         user,
         loading,
     }
     return (
-        <AuthContext.Provider value={authInfo}>
+        <AuthContext value={authInfo}>
             {children}
-        </AuthContext.Provider>
+        </AuthContext>
     );
 };
 

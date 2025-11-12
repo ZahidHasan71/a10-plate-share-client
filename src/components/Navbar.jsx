@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { use } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
 
 const Navbar = () => {
+    const { user, signOutUser } = use(AuthContext);
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => { })
+            .catch()
+    }
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/available-foods">Available Foods</NavLink></li>
+        <li><NavLink to="/register">Register</NavLink></li>
+        {
+            user && <>
+                <li><NavLink to="/add-food">Add Food</NavLink></li>
+                <li><NavLink to="/add-food">My Foods</NavLink></li>
+                <li><NavLink to="/manage-my-foods">Manage My Foods</NavLink></li>
+            </>
+
+        }
     </>
     return (
         <div className="navbar  shadow-sm max-w-7xl mx-auto px-4">
@@ -29,7 +45,12 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {
+                    user ?
+                        <button onClick={handleSignOut} className="btn btn-primary">Sign Out</button>
+                        :
+                        <Link to="/login" className="btn btn-primary">Login</Link>
+                }
             </div>
         </div>
     );
