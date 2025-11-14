@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Search, Upload } from 'lucide-react';
 
-// ✅ ১. ছবিটিকে 'import' করুন।
-// ধরে নিলাম ছবিটি src/assets/banner-img.png এ আছে
+
 import bannerImage from '../assets/banner-img.png';
 
 const Banner = () => {
+    const MotionDiv = motion.div;
 
     return (
         <div className="relative min-h-[650px] bg-gray-50 flex items-center justify-center overflow-hidden">
@@ -19,7 +19,7 @@ const Banner = () => {
             <div className="max-w-[1400px] mx-auto px-6 py-20 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
                 {/* Text and CTAs (Left Side) */}
-                <motion.div
+                <MotionDiv
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
@@ -51,10 +51,10 @@ const Banner = () => {
                             Donate Your Surplus
                         </Link>
                     </div>
-                </motion.div>
+                </MotionDiv>
 
                 {/* Image (Right Side) */}
-                <motion.div
+                <MotionDiv
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
@@ -68,7 +68,7 @@ const Banner = () => {
                         />
                         <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-linear-to-t from-gray-50 to-transparent"></div>
                     </div>
-                </motion.div>
+                </MotionDiv>
 
             </div>
         </div>

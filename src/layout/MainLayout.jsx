@@ -1,14 +1,29 @@
+// src/layout/MainLayout.jsx
 import React from 'react';
+import { Outlet, useNavigation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import { Outlet } from 'react-router';
 import Footer from '../components/Footer';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const MainLayout = () => {
+    const navigation = useNavigation();
+    const isLoading = navigation.state === 'loading';
+
     return (
-        <div>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+        <div className="min-h-screen flex flex-col">
+            <Navbar />
+
+            <main className="grow">
+                {isLoading ? (
+                    <div className="min-h-[calc(100vh-100px)] flex justify-center items-center">
+                        <LoadingSpinner />
+                    </div>
+                ) : (
+                    <Outlet />
+                )}
+            </main>
+
+            <Footer />
         </div>
     );
 };

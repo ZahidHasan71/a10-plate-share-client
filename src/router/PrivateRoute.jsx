@@ -1,14 +1,18 @@
-import React from 'react';
+// src/router/PrivateRoute.jsx
+import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { use } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
-
+import LoadingSpinner from '../components/LoadingSpinner';
 const PrivateRoute = ({ children }) => {
-    const { user, loading } = use(AuthContext)
+    const { user, loading } = useContext(AuthContext)
     const location = useLocation()
 
     if (loading) {
-        return <progress className="progress w-56"></progress>
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <LoadingSpinner />
+            </div>
+        )
     }
     if (user) {
         return children
