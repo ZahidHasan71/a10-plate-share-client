@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Utensils, HeartHandshake, Zap } from 'lucide-react';
 import Banner from '../components/Banner';
+import FeaturedFoods from '../components/FeaturedFoods';
 
 const Home = () => {
     const MotionDiv = motion.div;
@@ -18,7 +19,7 @@ const Home = () => {
         <div >
             {/* 1. Hero Section with Animation */}
             <Banner />
-
+            <FeaturedFoods></FeaturedFoods>
             {/* 2. Feature Section */}
             <section className="max-w-7xl mx-auto px-4 py-16">
                 <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">How It Works</h2>
