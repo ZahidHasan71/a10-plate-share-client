@@ -30,8 +30,9 @@ export const router = createBrowserRouter([
 
             },
             {
-                path: "/food/:id",
-                element: <FoodDetails />
+                path: "/food-details/:id",
+                loader: ({ params }) => fetch(`http://localhost:5000/foods/${params.id}`),
+                element: <PrivateRoute><FoodDetails /></PrivateRoute>
             },
             {
                 path: "/register",

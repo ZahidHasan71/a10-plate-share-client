@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FoodCard = ({ food }) => {
-    const { foodName,
+    const {
+        _id,
+        foodName,
         foodImage,
         quantity,
         pickupLocation,
@@ -37,7 +40,7 @@ const FoodCard = ({ food }) => {
                         <button className="btn btn-warning btn-sm">Not Available</button>
                     )}
                 </div>
-                <button className="btn bg-orange-500 btn-md text-white">View Details</button>
+                <Link to={`/food-details/${_id}`} className="btn bg-orange-500 btn-md text-white">View Details</Link>
             </div>
         </div>
 
