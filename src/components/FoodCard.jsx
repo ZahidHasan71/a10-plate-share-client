@@ -37,7 +37,7 @@ const FoodCard = ({ food }) => {
                         <button className="btn btn-warning btn-sm">Not Available</button>
                     )}
                 </div>
-                <button className="btn bg-amber-500 btn-md text-white">View Details</button>
+                <button className="btn bg-orange-500 btn-md text-white">View Details</button>
             </div>
         </div>
 

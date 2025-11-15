@@ -22,7 +22,8 @@ const Home = () => {
             <FeaturedFoods></FeaturedFoods>
             {/* 2. Feature Section */}
             <section className="max-w-7xl mx-auto px-4 py-16">
-                <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">How It Works</h2>
+                <h2 className="text-4xl font-bold text-center text-gray-800 mb-2">How It Works</h2>
+                <p className="text-lg text-center text-gray-600 mb-8">Join our food sharing community in three simple steps</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <MotionDiv
                         variants={featureVariants}
