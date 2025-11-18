@@ -1,12 +1,12 @@
 // src/pages/AddFood.jsx
 import React, { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext"; // AuthContext ইম্পোর্ট নিশ্চিত করুন
+import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // useNavigate ইম্পোর্ট করা হয়েছে
 
 const AddFood = () => {
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // ভ্যারিয়েবল ডিক্লেয়ার করা হয়েছে
 
     const handleAddFood = (e) => {
         e.preventDefault();
@@ -35,7 +35,7 @@ const AddFood = () => {
             donatorName,
             donatorEmail,
             donatorPhotoURL,
-            foodStatus: "available", // নতুন খাবারের স্ট্যাটাস
+            foodStatus: "available",
             createdAt: new Date().toISOString(),
         };
 
@@ -49,27 +49,42 @@ const AddFood = () => {
         })
             .then((res) => res.json())
             .then((data) => {
+                // সার্ভার থেকে insertedId পেলে সফল
                 if (data.insertedId) {
+                    // REQUIRED: SweetAlert দেখাবে
                     Swal.fire({
                         title: "Success!",
                         text: "Food added successfully!",
                         icon: "success",
                     });
+
+                    // REQUIRED: ইনপুট ফিল্ড Blank হয়ে যাবে
                     form.reset();
-                    // সফলভাবে যোগ হওয়ার পর 'Manage My Food' পেজে রিডাইরেক্ট করা হলো
+
+                    // ✅ ESLint Warning ফিক্স করা হলো: 'navigate' ব্যবহার করা হলো
                     navigate("/manage-my-food");
+
                 } else {
-                    Swal.fire({ title: "Error!", text: "Failed to add food.", icon: "error" });
+                    Swal.fire({
+                        title: "Failed!",
+                        text: "Server rejected the request.",
+                        icon: "error"
+                    });
                 }
             })
-            .catch(() => {
-                Swal.fire({ title: "Error!", text: "Server connection failed.", icon: "error" });
+            .catch((error) => {
+                console.error("Fetch Error:", error);
+                Swal.fire({
+                    title: "Error!",
+                    text: "Could not connect to the server or network error occurred.",
+                    icon: "error"
+                });
             });
     };
 
     return (
         <div className="max-w-4xl mx-auto p-6 bg-white shadow-xl rounded-xl my-10">
-            <h2 className="text-3xl font-bold text-center text-green-600 mb-8">Share Your Surplus Food</h2>
+            <h2 className="text-3xl font-bold text-center text-orange-600 mb-8">Share Your  Food</h2>
 
             <form onSubmit={handleAddFood} className="space-y-6">
 
@@ -166,7 +181,7 @@ const AddFood = () => {
                 </div>
 
                 {/* Submit Button */}
-                <button type="submit" className="w-full btn bg-green-500 hover:bg-green-600 text-white text-lg font-semibold border-0">
+                <button type="submit" className="w-full btn bg-orange-500 hover:bg-green-600 text-white text-lg font-semibold border-0">
                     Add Food to Share
                 </button>
 

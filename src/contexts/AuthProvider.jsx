@@ -10,98 +10,76 @@ import {
     signOut,
     updateProfile
 } from 'firebase/auth';
+
 import auth from '../firebase/firebase.init';
-// import axios from 'axios';
 
 const googleProvider = new GoogleAuthProvider();
-const SERVER_URL = 'http://localhost:5000'; // ✅ তোমার সার্ভার URL
+const SERVER_URL = "http://localhost:5000";
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // =========================
-    // 🧩 MongoDB User Save Helper
-    // =========================
-    // const saveUserToDB = async (currentUser) => {
-    //     if (!currentUser?.email) return;
+    // 🔥 Save user into MongoDB
+    const saveUserToDB = async (currentUser) => {
+        const newUser = {
+            email: currentUser.email,
+            name: currentUser.displayName,
+            photoUrl: currentUser.photoURL
+        };
 
-    //     const userToSave = {
-    //         email: currentUser.email,
-    //         name: currentUser.displayName || 'Anonymous User',
-    //         photoURL: currentUser.photoURL || '',
-    //     };
+        await fetch(`${SERVER_URL}/users`, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(newUser)
+        });
+    };
 
-    //     try {
-    //         await axios.post(`${SERVER_URL}/users`, userToSave);
-    //     } catch (error) {
-    //         console.error("❌ Failed to save user to DB:", error.message);
-    //     }
-    // };
-
-    // =========================
-    // 🔐 AUTH METHODS
-    // =========================
-
-    // Email Registration createUser
+    // Email Registration
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
-    // Update Profile
-    const updateUserProfile = (name, photoUrl) => {
+    // Update profile
+    const updateUserProfile = (name, photoURL) => {
         return updateProfile(auth.currentUser, {
             displayName: name,
-            photoURL: photoUrl
+            photoURL: photoURL
         });
     };
 
-    // sign in with Email & Password Login
+    // Email login
     const signInUser = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };
 
-    // Google Login
+    // Google Sign In
     const signInWithGoogle = () => {
         setLoading(true);
-        return signInWithPopup(auth, googleProvider)
-            .then(result => {
-                // const currentUser = result.user;
-                // saveUserToDB(currentUser); // ✅ DB তে ইউজার সেভ
-                return result;
-            })
-            .catch(error => {
-                setLoading(false);
-                throw error;
-            });
+        return signInWithPopup(auth, googleProvider);
     };
 
     // Logout
-    const signOutUser = async () => {
+    const signOutUser = () => {
         setLoading(true);
         return signOut(auth);
     };
 
-    // =========================
-    //  Auth Observer
-    // =========================
+    // Observer
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-            setUser(currentUser);
-            if (currentUser?.email) {
-                // await saveUserToDB(currentUser);
+            if (currentUser) {
+                await saveUserToDB(currentUser);
             }
+            setUser(currentUser);
             setLoading(false);
         });
 
         return () => unsubscribe();
     }, []);
 
-    // =========================
-    // 📦 Context Value
-    // =========================
     const authInfo = {
         createUser,
         updateUserProfile,
@@ -112,11 +90,7 @@ const AuthProvider = ({ children }) => {
         loading,
     };
 
-    return (
-        <AuthContext value={authInfo}>
-            {children}
-        </AuthContext>
-    );
+    return <AuthContext value={authInfo}>{children}</AuthContext>;
 };
 
 export default AuthProvider;
