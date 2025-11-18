@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ManageMyFoods = () => {
     const { user } = useContext(AuthContext);
@@ -78,7 +79,8 @@ const ManageMyFoods = () => {
             });
     };
 
-    if (loading) return <div className="text-center text-xl py-10">Loading...</div>;
+    if (loading) return <LoadingSpinner />;
+
 
     return (
         <div className="max-w-6xl mx-auto p-6">

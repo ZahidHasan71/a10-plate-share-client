@@ -86,15 +86,17 @@ const Navbar = () => {
                     <div className="lg:hidden flex items-center gap-3">
 
                         {/* --- MOBILE MENU ICON --- */}
+                        {/* --- MOBILE MENU ICON --- */}
                         <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle transition-transform duration-300 hover:scale-110">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700 hover:text-orange-500" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                         d="M4 6h16M4 12h16M4 18h16" />
                                 </svg>
                             </div>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-3 shadow bg-base-100 rounded-box w-56">
+
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-4 shadow-lg bg-white rounded-xl w-64 animate__animated animate__fadeInDown">
                                 {mobileMenuLinks}
                             </ul>
                         </div>

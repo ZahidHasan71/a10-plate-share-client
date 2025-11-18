@@ -6,6 +6,8 @@ import { BsInstagram } from "react-icons/bs";
 import { BsLinkedin } from "react-icons/bs";
 import { IoMdCall } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
+import { UtensilsCrossed } from 'lucide-react';
+
 
 const Footer = () => {
     return (
@@ -15,7 +17,7 @@ const Footer = () => {
                 {/* 1. Logo & Mission */}
                 <aside className="col-span-1">
                     <Link to="/" className="flex items-center gap-2 text-3xl font-extrabold text-white transition duration-300 hover:text-orange-400">
-
+                        <UtensilsCrossed className="h-6 w-6 text-green-600" />
                         <span>
                             Plate<span className="text-orange-400">Share</span>
                         </span>

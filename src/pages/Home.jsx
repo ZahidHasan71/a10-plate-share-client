@@ -23,7 +23,7 @@ const Home = () => {
             {/* 2. Feature Section */}
             <section className=' gradient-to-r from-orange-50 to-white py-16'>
                 <div className="max-w-7xl mx-auto ">
-                    <h2 className="text-4xl font-bold text-center text-gray-800 mb-2">Post Food</h2>
+                    <h2 className="text-4xl font-bold text-center text-gray-800 mb-2"><span className="text-orange-500">How</span> It Works</h2>
                     <p className="text-lg text-center text-gray-600 mb-8">Join our food sharing community in three simple steps</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <MotionDiv
@@ -78,7 +78,7 @@ const Home = () => {
                         viewport={{ once: true }}
                         className="text-4xl font-bold text-center text-gray-800 mb-3"
                     >
-                        Our Mission
+                        <span className="text-orange-500">Our</span>  Mission
                     </motion.h2>
 
                     <motion.p
