@@ -21,52 +21,53 @@ const Home = () => {
             <Banner />
             <FeaturedFoods></FeaturedFoods>
             {/* 2. Feature Section */}
-            <section className="max-w-7xl mx-auto px-4 py-16">
-                <h2 className="text-4xl font-bold text-center text-gray-800 mb-2">Post Food</h2>
-                <p className="text-lg text-center text-gray-600 mb-8">Join our food sharing community in three simple steps</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <MotionDiv
-                        variants={featureVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.5 }}
-                        className="p-8 bg-white rounded-xl shadow-xl text-center border-t-4 border-orange-500"
-                    >
-                        <HeartHandshake className='w-12 h-12 text-orange-500 mx-auto mb-4' />
-                        <h3 className="text-xl font-bold mb-3">Donate Easily</h3>
-                        <p className="text-gray-600">Post your surplus food items with details like quantity and expiration date in minutes.</p>
-                    </MotionDiv>
+            <section className=' gradient-to-r from-orange-50 to-white py-16'>
+                <div className="max-w-7xl mx-auto ">
+                    <h2 className="text-4xl font-bold text-center text-gray-800 mb-2">Post Food</h2>
+                    <p className="text-lg text-center text-gray-600 mb-8">Join our food sharing community in three simple steps</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <MotionDiv
+                            variants={featureVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.5 }}
+                            className="p-8 bg-white rounded-xl shadow-xl text-center border-t-4 border-orange-500"
+                        >
+                            <HeartHandshake className='w-12 h-12 text-orange-500 mx-auto mb-4' />
+                            <h3 className="text-xl font-bold mb-3">Donate Easily</h3>
+                            <p className="text-gray-600">Post your surplus food items with details like quantity and expiration date in minutes.</p>
+                        </MotionDiv>
 
-                    <MotionDiv
-                        variants={featureVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ delay: 0.2 }}
-                        className="p-8 bg-white rounded-xl shadow-xl text-center border-t-4 border-green-600"
-                    >
-                        <Zap className='w-12 h-12 text-green-600 mx-auto mb-4' />
-                        <h3 className="text-xl font-bold mb-3">Find Food</h3>
-                        <p className="text-gray-600">Browse available food listings and send a request directly to the donor.</p>
-                    </MotionDiv>
+                        <MotionDiv
+                            variants={featureVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.5 }}
+                            transition={{ delay: 0.2 }}
+                            className="p-8 bg-white rounded-xl shadow-xl text-center border-t-4 border-green-600"
+                        >
+                            <Zap className='w-12 h-12 text-green-600 mx-auto mb-4' />
+                            <h3 className="text-xl font-bold mb-3">Find Food</h3>
+                            <p className="text-gray-600">Browse available food listings and send a request directly to the donor.</p>
+                        </MotionDiv>
 
-                    <MotionDiv
-                        variants={featureVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ delay: 0.4 }}
-                        className="p-8 bg-white rounded-xl shadow-xl text-center border-t-4 border-gray-800"
-                    >
-                        <Utensils className='w-12 h-12 text-gray-800 mx-auto mb-4' />
-                        <h3 className="text-xl font-bold mb-3">Collect Food</h3>
-                        <p className="text-gray-600">Contribute to a sustainable environment by ensuring good food doesn't end up in the bin.</p>
-                    </MotionDiv>
+                        <MotionDiv
+                            variants={featureVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.5 }}
+                            transition={{ delay: 0.4 }}
+                            className="p-8 bg-white rounded-xl shadow-xl text-center border-t-4 border-gray-800"
+                        >
+                            <Utensils className='w-12 h-12 text-gray-800 mx-auto mb-4' />
+                            <h3 className="text-xl font-bold mb-3">Collect Food</h3>
+                            <p className="text-gray-600">Contribute to a sustainable environment by ensuring good food doesn't end up in the bin.</p>
+                        </MotionDiv>
+                    </div>
                 </div>
             </section>
             {/* 3. Our Mission & Community Stats Section */}
-            {/* 3. Our Mission & Community Stats Section */}
-            <section className="py-20 bg-gradient-to-b from-gray-50 to-white mt-10">
+            <section className="py-20  mt-10">
                 <div className="max-w-7xl mx-auto px-4">
 
                     {/* Title */}

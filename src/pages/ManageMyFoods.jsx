@@ -1,3 +1,4 @@
+// src/pages/ManageMyFoods.jsx
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
@@ -6,7 +7,7 @@ const ManageMyFoods = () => {
     const { user } = useContext(AuthContext);
     const [foods, setFoods] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [editingFood, setEditingFood] = useState(null); // For modal
+    const [editingFood, setEditingFood] = useState(null);
 
     // 🔥 Fetch user-added foods
     useEffect(() => {
@@ -67,14 +68,11 @@ const ManageMyFoods = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount) {
+                if (data.modifiedCount || data.matchedCount) {
                     Swal.fire("Updated!", "Food updated successfully!", "success");
-
-                    // UI update
                     setFoods(prev =>
                         prev.map(f => (f._id === editingFood._id ? { ...f, ...updatedFood } : f))
                     );
-
                     setEditingFood(null);
                 }
             });
@@ -98,25 +96,18 @@ const ManageMyFoods = () => {
                             <th>Actions</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         {foods.map((food, index) => (
                             <tr key={food._id}>
                                 <td>{index + 1}</td>
-
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <img src={food.foodImage} className="w-12 h-12 rounded" />
                                         <span className="font-semibold">{food.foodName}</span>
                                     </div>
                                 </td>
-
                                 <td>{food.foodQuantity}</td>
-
-                                <td>
-                                    <span className="badge badge-success">Available</span>
-                                </td>
-
+                                <td><span className="badge badge-success">Available</span></td>
                                 <td>
                                     <button
                                         onClick={() => setEditingFood(food)}
@@ -124,7 +115,6 @@ const ManageMyFoods = () => {
                                     >
                                         Update
                                     </button>
-
                                     <button
                                         onClick={() => handleDelete(food._id)}
                                         className="btn btn-sm btn-error"
@@ -135,7 +125,6 @@ const ManageMyFoods = () => {
                             </tr>
                         ))}
                     </tbody>
-
                 </table>
             </div>
 
@@ -146,38 +135,45 @@ const ManageMyFoods = () => {
                         <h3 className="text-lg font-bold mb-3">Update Food</h3>
 
                         <form onSubmit={handleUpdate} className="space-y-3">
-                            <input className="input input-bordered w-full"
+                            <input
+                                className="input input-bordered w-full"
                                 name="foodName"
                                 defaultValue={editingFood.foodName}
+                                required
                             />
-
-                            <input className="input input-bordered w-full"
+                            <input
+                                className="input input-bordered w-full"
                                 name="foodImage"
                                 defaultValue={editingFood.foodImage}
+                                required
                             />
-
-                            <input className="input input-bordered w-full"
+                            <input
+                                className="input input-bordered w-full"
                                 name="foodQuantity"
+                                type="number"
+                                min="1"
                                 defaultValue={editingFood.foodQuantity}
+                                required
                             />
-
-                            <input className="input input-bordered w-full"
+                            <input
+                                className="input input-bordered w-full"
                                 name="pickupLocation"
                                 defaultValue={editingFood.pickupLocation}
+                                required
                             />
-
-                            <input className="input input-bordered w-full"
+                            <input
+                                className="input input-bordered w-full"
                                 name="expireDate"
                                 type="date"
                                 defaultValue={editingFood.expireDate}
+                                required
                             />
-
                             <textarea
                                 className="textarea textarea-bordered w-full"
                                 name="additionalNotes"
                                 defaultValue={editingFood.additionalNotes}
+                                required
                             ></textarea>
-
                             <button className="btn btn-success w-full">Update</button>
                         </form>
 
