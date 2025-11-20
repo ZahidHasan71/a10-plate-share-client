@@ -3,7 +3,7 @@
 **PlateShare** is a full-stack MERN application that empowers users to share surplus food with their community.
 It reduces food waste and fosters generosity by enabling people to donate, discover, and request food in real-time.
 
-🔗 **Live Site:** [https://url.com]
+🔗 **Live Site:** [https://wonderful-pavlova-e53a67.netlify.app/]
 
 
 ---

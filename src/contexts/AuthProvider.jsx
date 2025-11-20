@@ -14,7 +14,7 @@ import {
 import auth from '../firebase/firebase.init';
 
 const googleProvider = new GoogleAuthProvider();
-const SERVER_URL = "http://localhost:5000";
+const SERVER_URL = "https://a10-plate-share-server.vercel.app";
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);

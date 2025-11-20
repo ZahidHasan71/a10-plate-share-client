@@ -26,7 +26,7 @@ const FoodDetails = () => {
 
     // Load requests for this food
     useEffect(() => {
-        fetch(`http://localhost:5000/foods/requests/${foodId}`)
+        fetch(`https://a10-plate-share-server.vercel.app/foods/requests/${foodId}`)
             .then(res => res.json())
             .then(data => {
                 console.log("request data for food", data);
@@ -55,7 +55,7 @@ const FoodDetails = () => {
             status: "pending",
         };
 
-        fetch('http://localhost:5000/requests', {
+        fetch('https://a10-plate-share-server.vercel.app/requests', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newRequestFood)

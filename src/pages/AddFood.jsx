@@ -38,7 +38,7 @@ const AddFood = () => {
             userEmail: user.email, // ✅ Added for filtering
         };
 
-        fetch("http://localhost:5000/foods", {
+        fetch("https://a10-plate-share-server.vercel.app/foods", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(newFood),

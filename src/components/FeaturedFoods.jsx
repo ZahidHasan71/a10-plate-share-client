@@ -11,7 +11,7 @@ const FeaturedFoods = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/featured-foods')
+        fetch('https://a10-plate-share-server.vercel.app/featured-foods')
             .then(res => res.json())
             .then(data => {
                 setFeaturedFoods(data);

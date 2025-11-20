@@ -11,7 +11,7 @@ const MyFoodRequests = () => {
     // 🔥 Fetch user requests
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/requests?email=${user.email}`)
+            fetch(`https://a10-plate-share-server.vercel.app/requests?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setRequests(data);
@@ -33,7 +33,7 @@ const MyFoodRequests = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/requests/${_id}`, {
+                fetch(`https://a10-plate-share-server.vercel.app/requests/${_id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

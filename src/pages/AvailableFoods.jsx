@@ -9,7 +9,7 @@ const AvailableFoods = () => {
     // 🔍 Fetch foods with optional search
     const fetchFoods = (search = '') => {
         setLoading(true);
-        fetch(`http://localhost:5000/foods?search=${search}`)
+        fetch(`https://a10-plate-share-server.vercel.app/foods?search=${search}`)
             .then(res => res.json())
             .then(data => {
                 setFoods(data);

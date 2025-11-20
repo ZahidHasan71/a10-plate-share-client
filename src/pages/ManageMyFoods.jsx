@@ -13,7 +13,7 @@ const ManageMyFoods = () => {
     // 🔥 Fetch user-added foods
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/foods?email=${user.email}`)
+            fetch(`https://a10-plate-share-server.vercel.app/foods?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setFoods(data);
@@ -34,7 +34,7 @@ const ManageMyFoods = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/foods/${_id}`, {
+                fetch(`https://a10-plate-share-server.vercel.app/foods/${_id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -62,7 +62,7 @@ const ManageMyFoods = () => {
             additionalNotes: form.additionalNotes.value,
         };
 
-        fetch(`http://localhost:5000/foods/${editingFood._id}`, {
+        fetch(`https://a10-plate-share-server.vercel.app/foods/${editingFood._id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedFood),

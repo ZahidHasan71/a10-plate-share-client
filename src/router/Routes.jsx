@@ -25,13 +25,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/available-foods",
-                loader: () => fetch(`http://localhost:5000/foods`),
+                loader: () => fetch(`https://a10-plate-share-server.vercel.app/foods`),
                 element: <AvailableFoods />
 
             },
             {
                 path: "/food-details/:id",
-                loader: ({ params }) => fetch(`http://localhost:5000/foods/${params.id}`),
+                loader: ({ params }) => fetch(`https://a10-plate-share-server.vercel.app/foods/${params.id}`),
                 element: <PrivateRoute><FoodDetails /></PrivateRoute>
             },
             {
